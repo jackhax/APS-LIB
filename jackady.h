@@ -283,6 +283,8 @@ string sum(string a,string b){
 
         c = c + int_to_str(sum);
     }
+    if(carry != 0)
+        c += int_to_str(carry);
     reverse_string(c);
     if(neg)
         c = "-" + c;
@@ -343,7 +345,65 @@ string substract(string a,string b){
 //18. Mul
 string mul(string a,string b){
     string c="";
+    bool neg = false;
+
+    if(a[0] == '-' && b[0] != '-'){
+        neg = true;
+        a = a.substr(1,a.length()-1);
+    }
+    if(a[0] != '-' && b[0] == '-'){
+        neg = true;
+        b = b.substr(1,b.length()-1);
+    }
+    if(a[0] == '-' && b[0] == '-'){
+        a = a.substr(1,a.length()-1);
+        b = b.substr(1,b.length()-1);
+    }
+
+    if(a.length()<b.length())
+        swap(&a,&b);
+
+
+
     int la = a.length();
     int lb = b.length();
 
+    int summ=0;
+    int carry = 0;
+
+    string prod = "0";
+
+    for(int i=lb-1;i>=0;i--){
+        string s = "";
+        carry = 0;
+        int m = char_to_int(b[i]);
+        for(int j=la-1;j>=0;j--){
+            int n = char_to_int(a[j]);
+            summ = m*n + carry;
+            carry = summ>=10?summ/10:0;
+            summ = summ>=10?summ%10:summ;
+            s += int_to_str(summ);
+        }
+        if(carry!=0)
+            s += int_to_str(carry);
+        initial_padding(&s,(lb-1)-i);
+        reverse_string(s);
+        prod = sum(prod,s);
+    }
+    initial_unpadding(&prod);
+    if(prod == "")
+        prod = "0";
+    if(neg)
+        prod = "-"+prod;
+    return prod;
+}
+
+//19. Factorial
+string factorial(string a){
+    string f="1",c="0";
+    while(numCompare(c,a) == -1){
+        c = sum(c,"1");
+        f = mul(f,c);
+    }
+    return f;
 }
