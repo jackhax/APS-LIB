@@ -13,10 +13,11 @@ Contains following functions:
 9. Verify if string is num
 10. char to int
 11. int to char
-12. Initials Padding
-13. Initial unpadding
-14. Big Integers compare
-15. Big Integers Add
-16. Big Integers Substract
-17. Big Integers Multiplication
-18. Big Factorials
+12. Reverse string
+13. Initials Padding
+14. Initial unpadding
+15. Big Integers compare
+16. Big Integers Add
+17. Big Integers Substract
+18. Big Integers Multiplication
+19. Big Factorials
