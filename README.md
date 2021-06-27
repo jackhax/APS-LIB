@@ -21,3 +21,5 @@ Contains following functions:
 17. Big Integers Substract
 18. Big Integers Multiplication
 19. Big Factorials
+
+And many more hehe :)
